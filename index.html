@@ -173,10 +173,10 @@ Ryu
 
 <div id="foreverSection">
 <h2>Will you stay with me forever? 💍</h2>
-<button onclick="yesClicked()">Yes ❤️</button>
+<button onclick="showLove()">Yes ❤️</button>
 <button id="noBtn" onmouseover="moveNo()">No 😢</button>
 </div>
-
+<div id="message"></div>div>
 <audio id="bgMusic" preload="auto">
 <source src="perfect.mp3" type="audio/mpeg">
 </audio>
@@ -265,6 +265,11 @@ setInterval(createCompliment,800);
 }
 
 </script>
-
+function showLove() {
+  document.getElementById("message").innerHTML =
+  "<h1>I knew you would say yes </h1><p>You just made my whole year.</p>";
+  }
+</script>
 </body>
+
 </html>
