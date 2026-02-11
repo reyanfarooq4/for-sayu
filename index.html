@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sayu ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia, serif;
+}
+
+body{
+background:linear-gradient(135deg,#fff0f6,#ffe6f2,#ffffff);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+overflow-x:hidden;
+text-align:center;
+color:#660033;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+h1{
+margin-top:80px;
+font-size:3.5rem;
+color:#ff4da6;
+text-shadow:0 0 15px #ff99cc;
+}
+
+#typed{
+margin-top:20px;
+font-size:1.4rem;
+min-height:40px;
+}
+
+.card{
+margin:40px auto;
+max-width:650px;
+background:rgba(255,255,255,0.8);
+padding:40px;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,105,180,0.3);
+opacity:0;
+transform:translateY(30px);
+transition:1.5s;
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+button{
+margin:15px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff66b2;
+color:white;
+font-size:1rem;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#ff3385;
+transform:scale(1.08);
+}
+
+.letter{
+max-width:600px;
+margin:40px auto;
+font-size:1.2rem;
+line-height:1.8;
+opacity:0;
+transition:2s;
+}
+
+.letter.show{
+opacity:1;
+}
+
+.signature{
+margin-top:30px;
+font-style:italic;
+}
+
+.heart{
+position:fixed;
+bottom:-10px;
+animation:float 6s linear forwards;
+color:#ff66b2;
+}
+
+@keyframes float{
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+.compliment{
+position:fixed;
+top:-50px;
+font-size:1.1rem;
+color:#cc0066;
+animation:fall linear forwards;
+white-space:nowrap;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+#foreverSection{
+margin-top:40px;
+opacity:0;
+transition:1.5s;
+}
+
+#foreverSection.show{
+opacity:1;
+}
+
+#noBtn{
+position:relative;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Sayu ❤️</h1>
+
+<div id="typed"></div>
+
+<div class="card show" id="card">
+<p>I promise to protect your smile.</p>
+<p>I promise to stay gentle with your heart.</p>
+<p>I promise to choose you every single day.</p>
+<p>I promise effort, loyalty, and growth.</p>
+
+<button onclick="reveal()">Open My Heart 💌</button>
+</div>
+
+<div class="letter" id="letter">
+Sayu,  
+
+Since 26 December 2025,  
+life has felt warmer because of you.  
+
+Your smile is my favorite place.  
+
+I don’t promise perfection.  
+I promise choosing you — always.  
+
+<div class="signature">
+— Yours, always  
+Ryu
+</div>
+</div>
+
+<div id="foreverSection">
+<h2>Will you stay with me forever? 💍</h2>
+<button onclick="yesClicked()">Yes ❤️</button>
+<button id="noBtn" onmouseover="moveNo()">No 😢</button>
+</div>
+
+<audio id="bgMusic" preload="auto">
+<source src="perfect.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// Typing
+const text="Happy Promise Day, Sayu. This page exists because you exist.";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typed").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);
+}
+}
+type();
+
+// Reveal
+function reveal(){
+const music=document.getElementById("bgMusic");
+music.currentTime=0;
+music.play().then(()=>{music.loop=true;});
+
+document.getElementById("card").classList.add("show");
+document.getElementById("letter").classList.add("show");
+document.getElementById("foreverSection").classList.add("show");
+
+for(let i=0;i<15;i++){createHeart();}
+startCompliments();
+}
+
+// Yes clicked
+function yesClicked(){
+alert("You just made me the happiest person alive ❤️");
+for(let i=0;i<50;i++){createHeart();}
+for(let i=0;i<30;i++){createCompliment();}
+}
+
+// No button runs away
+function moveNo(){
+const btn=document.getElementById("noBtn");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"vw";
+btn.style.top=Math.random()*80+"vh";
+}
+
+// Floating hearts
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+15+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,1200);
+
+// Compliment rain
+const compliments=[
+"Your smile is magic ✨",
+"You are breathtaking",
+"You make my world softer",
+"You are my peace",
+"You glow differently",
+"You’re unreal",
+"My favorite person",
+"You feel like home",
+"You’re dangerously cute",
+"You’re everything"
+];
+
+function createCompliment(){
+const text=document.createElement("div");
+text.classList.add("compliment");
+text.innerHTML=compliments[Math.floor(Math.random()*compliments.length)];
+text.style.left=Math.random()*100+"vw";
+text.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(text);
+setTimeout(()=>text.remove(),6000);
+}
+
+function startCompliments(){
+setInterval(createCompliment,800);
+}
+
+</script>
+
+</body>
+</html>
